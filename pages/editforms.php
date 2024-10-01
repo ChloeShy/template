@@ -123,7 +123,7 @@
                                         $inventory = $stmt2->fetch(PDO::FETCH_ASSOC);
                                         
 
-                                        if (!$inventory) {
+                                        /* if (!$inventory) {
                                             throw new Exception("Item not found.");
                                         }
 
@@ -156,7 +156,7 @@
                                             } else {
                                                 echo "<div style='text-align: center; margin-top: 20px;'>Failed to update record.</div>";
                                             }
-                                        }
+                                        } */
                                     } catch (PDOException $exception) {
                                         echo "Error: " . $exception->getMessage();
                                     } catch (Exception $e) {

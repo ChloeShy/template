@@ -10,7 +10,27 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Get the item ID from the URL
-    $itemId = $_GET['id']; // Added semicolon here
+    $itemId = $_GET['id'];
+
+    // Retrieve the current item details
+    $query2 = "SELECT 
+                    items.id AS item_id, 
+                    categories.id AS category_id, 
+                    categories.name AS category_name, 
+                    items.name AS item_name, 
+                    items.price, 
+                    items.description, 
+                    items.image, 
+                    items.img_type,
+                    items.quantity 
+                FROM items 
+                INNER JOIN categories ON items.category_id = categories.id
+                WHERE items.id = :id";
+
+    $stmt2 = $conn->prepare($query2);
+    $stmt2->bindParam(':id', $itemId);
+    $stmt2->execute();
+    $inventory = $stmt2->fetch(PDO::FETCH_ASSOC);
 
     // Prepare the SQL update statement
     $updateStmt = "UPDATE items 
@@ -23,15 +43,15 @@ try {
                         category_id = :category_id
                     WHERE id = :id";
 
-    $stmt = $conn->prepare($updateStmt);
+    $stmt3 = $conn->prepare($updateStmt);
 
     // Bind parameters
-    $stmt->bindParam(':name', $_POST['itemName']);
-    $stmt->bindParam(':price', $_POST['price']);
-    $stmt->bindParam(':description', $_POST['desc']);
-    $stmt->bindParam(':quantity', $_POST['quantity']);
-    $stmt->bindParam(':category_id', $_POST['category']);
-    $stmt->bindParam(':id', $itemId); 
+    $stmt3->bindParam(':name', $_POST['itemName']);
+    $stmt3->bindParam(':price', $_POST['price']);
+    $stmt3->bindParam(':description', $_POST['desc']);
+    $stmt3->bindParam(':quantity', $_POST['quantity']);
+    $stmt3->bindParam(':category_id', $_POST['category']);
+    $stmt3->bindParam(':id', $itemId); 
 
     // Initialize variables for image handling
     $imageData = null;
@@ -45,16 +65,18 @@ try {
         $imgType = $imgProperties["mime"];
 
         // Bind the image data if a new image is uploaded
-        $stmt->bindParam(':image', $imageData);
-        $stmt->bindParam(':img_type', $imgType);
+        $stmt3->bindParam(':image', $imageData);
+        $stmt3->bindParam(':img_type', $imgType);
     } else {
-        // If no new image, set image and img_type to NULL
-        $stmt->bindValue(':image', null);
-        $stmt->bindValue(':img_type', null);
+        // If no new image, set image and img_type to original one
+        $image = $inventory['image']; 
+        $imgType = $inventory['img_type']; 
+        $stmt3->bindValue(':image', $image);
+        $stmt3->bindValue(':img_type', $imgType);
     }
 
     // Execute the update statement
-    if ($stmt->execute()) {
+    if ($stmt3->execute()) {
         echo "<div style=\"text-align: center; margin-top: 20px;\">Record updated successfully.</div>";
         header("refresh:2;url=index.php");
         exit; 
@@ -65,7 +87,7 @@ try {
 } catch (PDOException $e) {
     // Log the error message
     error_log($e->getMessage()); 
-    echo "<div style=\"text-align: center; margin-top: 20px;\">An error occurred. Please try again later.</div>";
+    echo "<div style=\"text-align: center; margin-top: 20px;\">Please make sure to enter all information. Please try again.</div>";
 }
 
 // Close the connection
