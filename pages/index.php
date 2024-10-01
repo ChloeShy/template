@@ -191,7 +191,8 @@
                                                                                 items.name AS item_name, 
                                                                                 items.price, 
                                                                                 items.description, 
-                                                                                items.image, 
+                                                                                items.image,
+                                                                                items.img_type,
                                                                                 items.quantity 
                                                                             FROM items 
                                                                             INNER JOIN categories ON items.category_id = categories.id");

@@ -100,7 +100,7 @@
                                             items.price, 
                                             items.description, 
                                             items.image, 
-                                            items.img_type, 
+                                            items.img_type,
                                             items.quantity 
                                         FROM items 
                                         INNER JOIN categories ON items.category_id = categories.id
