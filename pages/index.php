@@ -198,7 +198,6 @@
                                                                             INNER JOIN categories ON items.category_id = categories.id");
                                                     $stmt ->execute();
                                                     $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
                                                     
                                                     foreach($results as $row){
                                                 ?>
@@ -244,6 +243,7 @@
                                                     
                                             <?php 
                                                 }
+                                                
                                             }catch(PDOException $e){
                                                 echo "Error: " . $e->getMessage();
                                             }

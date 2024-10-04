@@ -165,24 +165,30 @@
                                     ?>
 
                                     <form action="./updateiteminfo.php?id=<?php echo htmlspecialchars($inventory["item_id"]) ?>" method="post" enctype="multipart/form-data">
-                                        <label for="categoryDropdown">種類</label>
+                                        <label style="font-size:30px;color:blue">編號: <?php echo $inventory["item_id"]?></label><br>
+                                        <label for="categoryDropdown">目前種類</label>
                                         <select id="categoryDropdown" name="category" required>
-                                            <option value="">請選擇一個種類</option>
+                                            <option value="">目前種類</option>
                                             <?php foreach ($categories as $category): ?>
                                                 <option value="<?php echo $category['id'] ?>" 
                                                     <?php echo $inventory['category_id'] == $category['id'] ? 'selected' : ''; ?>>
-                                                    <?php echo htmlspecialchars($category['name']); ?>
+                                                    <?php echo $category['name'] ?>
                                                 </option>
                                             <?php endforeach; ?>
                                         </select>
                                         <br><br>
-
                                         <div class="form-group">
-                                            <label style="font-size:30px;color:blue">Now Edit id: <?php echo $inventory["item_id"]?></label><br>
+                                            <label for="newCategoryName">更新種類</label>
+                                            <input  class="form-control" type="text" id="newcategory_name" name="newcategory_name" required>
+                                            <p class="help-block">請輸入種類</p>
+                                        </div>
+                                        <br><br>
+                                        <div class="form-group">
+                                            
                                             <label>現時名稱</label>
                                             <input class="form-control" disabled value="<?php echo $inventory["item_name"] ?>">
                                             <label style="color:red">新名稱</label>
-                                            <input class="form-control" name="itemName" required>
+                                            <input class="form-control" value="" name="itemName" required>
                                             <p class="help-block">請輸入名稱</p>
                                         </div>
                                         <br><br>
@@ -191,7 +197,7 @@
                                             <label>現時價格</label>
                                             <input class="form-control" disabled value="<?php echo $inventory["price"]?>">
                                             <label style="color:red">新價格</label>
-                                            <input class="form-control" name="price" type="number" min="0" max="10000" step="0.01" required>
+                                            <input class="form-control" name="price" type="number" min="0" max="10000" step="0.01" value="<?php echo $inventory["price"]?>" required>
                                             <p class="help-block">請輸入價格</p>
                                         </div>
                                         <br><br>
@@ -208,7 +214,7 @@
                                             <label>現時數量</label>
                                             <input class="form-control" disabled value="<?php echo $inventory["quantity"] ?>">
                                             <label style="color:red">新數量</label>
-                                            <input class="form-control" name="quantity" type="number" min="0" max="10000" step="1" required>
+                                            <input class="form-control" name="quantity" type="text" value="<?php echo $inventory["quantity"] ?>" required>
                                             <p class="help-block">請輸入數量</p>
                                         </div>
                                         <br><br>

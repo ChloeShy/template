@@ -27,7 +27,7 @@ try {
             name VARCHAR(100) NOT NULL,
             price DECIMAL(10, 2) NOT NULL,
             description TEXT,
-            image BLOB DEFAULT NULL,
+            image BLOB NOT NULL,
             img_type TEXT NOT NULL,
             quantity VARCHAR(50),
             category_id INT,
