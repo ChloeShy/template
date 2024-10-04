@@ -25,14 +25,14 @@ try {
     $stmt2->bindParam(':quantity', $quantity);
 
     // Get form data
-    $name = $_POST["categories"]; // Category name
-    $itemName = $_POST["itemName"]; // Item name
-    $price = $_POST["price"]; // Item price
-    $description = $_POST["desc"]; // Item description
-    $image = file_get_contents($_FILES["image"]["tmp_name"]); // Item image
+    $name = $_POST["categories"]; 
+    $itemName = $_POST["itemName"]; 
+    $price = $_POST["price"]; 
+    $description = $_POST["desc"]; 
+    $image = file_get_contents($_FILES["image"]["tmp_name"]); 
     $imgProperties = getimagesize($_FILES["image"]["tmp_name"]);
-    $img_type = $imgProperties["mime"]; // Capture image type
-    $quantity = $_POST["quantity"]; // Item quantity
+    $img_type = $imgProperties["mime"]; 
+    $quantity = $_POST["quantity"]; 
 
     // Check if the category already exists
     $stmtCheckCategory = $conn->prepare("SELECT id FROM categories WHERE name = :name");

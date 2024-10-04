@@ -123,40 +123,6 @@
                                         $inventory = $stmt2->fetch(PDO::FETCH_ASSOC);
                                         
 
-                                        /* if (!$inventory) {
-                                            throw new Exception("Item not found.");
-                                        }
-
-                                        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-                                            // Handle image upload
-                                            $image = $inventory['image'];
-                                            $imgtype = $inventory['img_type'];
-                                            if (!empty($_FILES['image']['tmp_name'])) {
-                                                $image = file_get_contents($_FILES['image']['tmp_name']);
-                                                $imgtype = getimagesize($_FILES['image']['tmp_name'])['mime'];
-                                            }
-
-                                            $updateStmt = "UPDATE items SET name = :name, price = :price, description = :description, 
-                                                            image = :image, img_type = :img_type, quantity = :quantity, 
-                                                            category_id = :category_id WHERE id = :id";
-
-                                            $stmt3 = $conn->prepare($updateStmt);
-                                            $stmt3->bindParam(':name', $itemName);
-                                            $stmt3->bindParam(':price', $price);
-                                            $stmt3->bindParam(':description', $description);
-                                            $stmt3->bindParam(':image', $image);
-                                            $stmt3->bindParam(':img_type', $imgtype);
-                                            $stmt3->bindParam(':quantity', $quantity);
-                                            $stmt3->bindParam(':category_id', $category);
-                                            $stmt3->bindParam(':id', $itemId);
-
-                                            if ($stmt3->execute()) {
-                                                echo "<div style='text-align: center; margin-top: 20px;'>Record updated successfully.</div>";
-                                            } else {
-                                                echo "<div style='text-align: center; margin-top: 20px;'>Failed to update record.</div>";
-                                            }
-                                        } */
                                     } catch (PDOException $exception) {
                                         echo "Error: " . $exception->getMessage();
                                     } catch (Exception $e) {

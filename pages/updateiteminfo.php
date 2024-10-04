@@ -8,11 +8,9 @@ try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // 获取类别 ID 和新类别名称
     $categoryId = $_POST['category'];
     $newCategoryName = $_POST['newcategory_name'];
 
-    // 检查并插入新类别
     if (!empty($newCategoryName)) {
         $checkStmt = $conn->prepare("SELECT id FROM categories WHERE name = :name");
         $checkStmt->bindParam(':name', $newCategoryName);
@@ -29,7 +27,6 @@ try {
         }
     }
 
-    // 更新项目
     $updateStmt = $conn->prepare("UPDATE items 
         SET name = :name, 
             price = :price, 
