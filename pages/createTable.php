@@ -13,11 +13,11 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     // Create tables
     $sqlStatements = [
-/*         "CREATE TABLE IF NOT EXISTS users (
+        "CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT PRIMARY KEY,
             username VARCHAR(50) NOT NULL UNIQUE,
             password VARCHAR(255) NOT NULL
-        )", */
+        )",
         "CREATE TABLE IF NOT EXISTS categories (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(50) NOT NULL
@@ -27,7 +27,7 @@ try {
             name VARCHAR(100) NOT NULL,
             price DECIMAL(10, 2) NOT NULL,
             description TEXT,
-            image BLOB NOT NULL,
+            image MEDIUMBLOB NOT NULL,
             img_type TEXT NOT NULL,
             quantity VARCHAR(50),
             category_id INT,
