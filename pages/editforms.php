@@ -131,7 +131,7 @@
                                     ?>
 
                                     <form action="./updateiteminfo.php?id=<?php echo htmlspecialchars($inventory["item_id"]) ?>" method="post" enctype="multipart/form-data">
-                                        <label style="font-size:30px;color:blue">編號: <?php echo $inventory["item_id"]?></label><br>
+                                        <label style="font-size:30px;color:#76b5c5">編號: <?php echo $inventory["item_id"]?></label><br>
                                         <label for="categoryDropdown">目前種類</label>
                                         <select id="categoryDropdown" name="category" required>
                                             <option value="">目前種類</option>
@@ -153,7 +153,7 @@
                                             
                                             <label>現時名稱</label>
                                             <input class="form-control" disabled value="<?php echo $inventory["item_name"] ?>">
-                                            <label style="color:red">新名稱</label>
+                                            <label style="color:#76b5c5">新名稱</label>
                                             <input class="form-control" value="" name="itemName" required>
                                             <p class="help-block">請輸入名稱</p>
                                         </div>
@@ -162,7 +162,7 @@
                                         <div class="form-group">
                                             <label>現時價格</label>
                                             <input class="form-control" disabled value="<?php echo $inventory["price"]?>">
-                                            <label style="color:red">新價格</label>
+                                            <label style="color:#76b5c5">新價格</label>
                                             <input class="form-control" name="price" type="number" min="0" max="10000" step="0.01" value="<?php echo $inventory["price"]?>" required>
                                             <p class="help-block">請輸入價格</p>
                                         </div>
@@ -171,23 +171,23 @@
                                         <div class="form-group">
                                             <label>現時描述</label>
                                             <textarea class="form-control" rows="5" disabled><?php echo $inventory['description'] ?></textarea>
-                                            <label style="color:red">新描述</label>
-                                            <textarea class="form-control" name="desc" rows="5" required><?php echo $inventory['description'] ?></textarea>
+                                            <label style="color:#76b5c5">新描述</label>
+                                            <textarea class="form-control" name="desc" rows="5" required></textarea>
                                         </div>
                                         <br><br>
 
                                         <div class="form-group">
                                             <label>現時數量</label>
                                             <input class="form-control" disabled value="<?php echo $inventory["quantity"] ?>">
-                                            <label style="color:red">新數量</label>
-                                            <input class="form-control" name="quantity" type="text" value="<?php echo $inventory["quantity"] ?>" required>
+                                            <label style="color:#76b5c5">新數量</label>
+                                            <input class="form-control" name="quantity" type="text" value="" required>
                                             <p class="help-block">請輸入數量</p>
                                         </div>
                                         <br><br>
 
                                         <div class="form-group">
                                             <label>圖片</label>
-                                            <input class="btn btn-default" type="file" name="image">
+                                            <input class="btn btn-default" type="file" name="image" >
                                             <p class="help-block">請上載圖片</p>
                                             <br>
                                             <?php if (!empty($inventory['image'])): ?>
