@@ -145,7 +145,7 @@
                                         <br><br>
                                         <div class="form-group">
                                             <label for="newCategoryName">更新種類</label>
-                                            <input  class="form-control" type="text" id="newcategory_name" name="newcategory_name" required>
+                                            <input  class="form-control" type="text" id="newcategory_name" name="newcategory_name"  value="<?php echo $inventory['category_name'] ?>" required>
                                             <p class="help-block">請輸入種類</p>
                                         </div>
                                         <br><br>
@@ -154,7 +154,7 @@
                                             <label>現時名稱</label>
                                             <input class="form-control" disabled value="<?php echo $inventory["item_name"] ?>">
                                             <label style="color:#76b5c5">新名稱</label>
-                                            <input class="form-control" value="" name="itemName" required>
+                                            <input class="form-control" value="<?php echo $inventory['item_name'] ?>" name="itemName" required>
                                             <p class="help-block">請輸入名稱</p>
                                         </div>
                                         <br><br>
@@ -172,7 +172,7 @@
                                             <label>現時描述</label>
                                             <textarea class="form-control" rows="5" disabled><?php echo $inventory['description'] ?></textarea>
                                             <label style="color:#76b5c5">新描述</label>
-                                            <textarea class="form-control" name="desc" rows="5" required></textarea>
+                                            <textarea class="form-control" name="desc" rows="5" required><?php echo $inventory['description'] ?></textarea>
                                         </div>
                                         <br><br>
 
@@ -180,7 +180,7 @@
                                             <label>現時數量</label>
                                             <input class="form-control" disabled value="<?php echo $inventory["quantity"] ?>">
                                             <label style="color:#76b5c5">新數量</label>
-                                            <input class="form-control" name="quantity" type="text" value="" required>
+                                            <input class="form-control" name="quantity" type="text" value="<?php echo $inventory['quantity'] ?>" required>
                                             <p class="help-block">請輸入數量</p>
                                         </div>
                                         <br><br>
