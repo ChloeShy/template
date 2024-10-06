@@ -8,6 +8,21 @@ try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    $query2 = "SELECT 
+        items.id AS item_id, 
+        categories.id AS category_id, 
+        categories.name AS category_name, 
+        items.name AS item_name, 
+        items.price, 
+        items.description, 
+        items.image, 
+        items.img_type,
+        items.quantity 
+    FROM items 
+    INNER JOIN categories ON items.category_id = categories.id
+    WHERE items.id = :id";
+
+
     $categoryId = $_POST['category'];
     $newCategoryName = $_POST['newcategory_name'];
 
@@ -57,6 +72,14 @@ try {
     $updateStmt->bindParam(':quantity', $quantity);
     $updateStmt->bindParam(':category_id', $categoryId);
     $updateStmt->bindParam(':id', $itemId);
+
+    $itemId = $_GET['id'];
+                                        
+
+    $stmt2 = $conn->prepare($query2);
+    $stmt2->bindParam(':id', $itemId);
+    $stmt2->execute();
+    $inventory = $stmt2->fetch(PDO::FETCH_ASSOC);
 
     if ($imageData !== null) {
         $updateStmt->bindParam(':image', $imageData);
